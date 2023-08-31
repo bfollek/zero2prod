@@ -3,7 +3,9 @@
 use actix_web::{web, App, HttpResponse, HttpServer};
 
 async fn health_check() -> HttpResponse {
-    HttpResponse::Ok().finish()
+    // `.into()` or `.finish()`. Either way, we fix
+    // "expected `HttpResponse`, found `HttpResponseBuilder`"
+    HttpResponse::Ok().into()
 }
 
 // We need to mark `run` as public.
