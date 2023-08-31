@@ -33,5 +33,12 @@ fn spawn_app() {
     // Launch the server as a background task
     // tokio::spawn returns a handle to the spawned future,
     // but we have no use for it here, hence the non-binding let
+
+    // "A second look at tokio::spawn’s documentation supports our hypothesis:
+    // when a tokio runtime is shut down all tasks spawned on it are dropped.
+    // tokio::test spins up a new runtime at the beginning of each test case and
+    // they shut down at the end of each test case. In other words, good news -
+    // no need to implement any clean up logic to avoid leaking resources between test
+    // runs." - p. 36
     let _ = tokio::spawn(server);
 }
