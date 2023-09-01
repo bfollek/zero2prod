@@ -29,7 +29,9 @@ async fn health_check_works() {
 // if we fail to perform the required setup we can just panic and crash
 // all the things.
 fn spawn_app() {
-    let server = zero2prod::run().expect("Failed to bind address");
+    // "Port 0 is special-cased at the OS level: trying to bind port 0 will trigger
+    // an OS scan for an available port which will then be bound to the application."
+    let server = zero2prod::run("localhost:0").expect("Failed to bind address");
     // Launch the server as a background task
     // tokio::spawn returns a handle to the spawned future,
     // but we have no use for it here, hence the non-binding let
