@@ -2,5 +2,5 @@
 
 ### Commands
 
-* curl -v http://localhost:8000/health_check
+* curl -v http://localhost:{port}/health_check
 * Start a file watcher: `cargo watch -x check -x test -x run`
