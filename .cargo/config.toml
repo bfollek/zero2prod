@@ -1,5 +1,11 @@
+# Set `lld` as the linker:
+# `brew install llvm` or `brew upgrade llvm`
+# `brew info llvm` tells us to set the path
+# in our startup files:
+# export PATH="/usr/local/opt/llvm/bin:$PATH"'
+# https://github.com/LukeMathWalker/zero-to-production/issues/192
 [target.x86_64-apple-darwin]
-rustflags = ["-C", "link-arg=-fuse-ld=/usr/local/bin/zld"]
+rustflags = ["-C", "link-arg=-fuse-ld=lld"]
 
 [target.aarch64-apple-darwin]
-rustflags = ["-C", "link-arg=-fuse-ld=/usr/local/bin/zld"]
+rustflags = ["-C", "link-arg=-fuse-ld=/opt/homebrew/opt/llvm/bin/ld64.lld"]
